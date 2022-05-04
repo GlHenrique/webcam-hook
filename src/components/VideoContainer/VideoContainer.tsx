@@ -72,7 +72,7 @@ const VideoContainer: React.FC = () => {
   return renderContainer ? (
     <>
       <Styled.Container>
-        <Styled.Video autoPlay ref={videoRef} />
+        <Styled.Video autoPlay ref={videoRef} muted />
       </Styled.Container>
       <Styled.ActionsContainer>
         <Styled.StopButton onClick={stopWebcam}>Stop ✋</Styled.StopButton>
