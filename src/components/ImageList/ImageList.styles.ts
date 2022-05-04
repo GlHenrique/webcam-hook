@@ -14,6 +14,6 @@ const Styled = {
     border-radius: 8px;
     object-fit: cover;
   `,
-}
+};
 
 export default Styled;
