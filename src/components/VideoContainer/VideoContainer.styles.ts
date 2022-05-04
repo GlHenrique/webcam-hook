@@ -16,7 +16,7 @@ const BaseButton = styled.button`
   cursor: pointer;
 
   :active {
-    transform: scale(.96);
+    transform: scale(0.96);
   }
 `;
 

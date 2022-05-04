@@ -9,7 +9,8 @@ const VideoContainer: React.FC = () => {
 
   const initializeWebcam = React.useCallback(() => {
     if (videoRef.current) {
-      navigator.mediaDevices.getUserMedia?.({ video: true })
+      navigator.mediaDevices
+        .getUserMedia?.({ video: true })
         .then((stream) => {
           setRenderContainer(true);
           if (videoRef.current) videoRef.current.srcObject = stream;
@@ -40,13 +41,22 @@ const VideoContainer: React.FC = () => {
     canvas.height = Number(videoRef.current?.videoHeight);
 
     const ctx = canvas.getContext('2d');
-    ctx?.drawImage(videoRef.current as HTMLVideoElement, 0, 0, canvas.width, canvas.height);
+    ctx?.drawImage(
+      videoRef.current as HTMLVideoElement,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
 
     const base64Snapshot = canvas.toDataURL('image/png');
 
     canvas.remove();
 
-    setScreenshots((previousScreenshots) => [...previousScreenshots, base64Snapshot]);
+    setScreenshots((previousScreenshots) => [
+      ...previousScreenshots,
+      base64Snapshot,
+    ]);
 
     return base64Snapshot;
   }, []);
@@ -66,9 +76,13 @@ const VideoContainer: React.FC = () => {
       </Styled.Container>
       <Styled.ActionsContainer>
         <Styled.StopButton onClick={stopWebcam}>Stop ✋</Styled.StopButton>
-        <Styled.SnapshotButton onClick={takeSnapshot}>Screenshot 📸</Styled.SnapshotButton>
+        <Styled.SnapshotButton onClick={takeSnapshot}>
+          Screenshot 📸
+        </Styled.SnapshotButton>
         {Boolean(screenshots.length) && (
-          <Styled.ClearListButton onClick={clearList}>Clear 🗑️</Styled.ClearListButton>
+          <Styled.ClearListButton onClick={clearList}>
+            Clear 🗑️
+          </Styled.ClearListButton>
         )}
       </Styled.ActionsContainer>
       {Boolean(screenshots.length) && <ImageList images={screenshots} />}

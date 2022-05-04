@@ -1,8 +1,7 @@
-import React from 'react';
 import { VideoContainer } from './components/VideoContainer';
 
 const App = () => (
-  <div className="wrapper">
+  <div className='wrapper'>
     <VideoContainer />
   </div>
 );
