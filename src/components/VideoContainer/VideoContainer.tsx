@@ -61,9 +61,7 @@ const VideoContainer: React.FC = () => {
     return base64Snapshot;
   }, []);
 
-  const clearList = React.useCallback(() => {
-    setScreenshots([]);
-  }, []);
+  const clearList = React.useCallback(() => setScreenshots([]), []);
 
   React.useEffect(() => {
     initializeWebcam();
