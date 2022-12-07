@@ -44,6 +44,10 @@ const Styled = {
   ClearListButton: styled(BaseButton)`
     background: #436;
   `,
+  WelcomeMessage: styled.h2`
+    color: #fff;
+    font-size: 22px;
+  `,
 };
 
 export default Styled;

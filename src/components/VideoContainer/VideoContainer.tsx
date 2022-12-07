@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import ImageList from '../ImageList/ImageList';
 import Styled from './VideoContainer.styles';
 
@@ -6,6 +7,7 @@ const VideoContainer: React.FC = () => {
   const [renderContainer, setRenderContainer] = React.useState(true);
   const videoRef: React.RefObject<HTMLVideoElement> = React.useRef(null);
   const [screenshots, setScreenshots] = React.useState<string[]>([]);
+  const { t } = useTranslation();
 
   const initializeWebcam = React.useCallback(() => {
     if (videoRef.current) {
@@ -73,16 +75,21 @@ const VideoContainer: React.FC = () => {
         <Styled.Video autoPlay ref={videoRef} muted />
       </Styled.Container>
       <Styled.ActionsContainer>
-        <Styled.StopButton onClick={stopWebcam}>Stop ✋</Styled.StopButton>
+        <Styled.StopButton onClick={stopWebcam}>
+          {t('stop_button')} ✋
+        </Styled.StopButton>
         <Styled.SnapshotButton onClick={takeSnapshot}>
-          Screenshot 📸
+          {t('screenshot_button')} 📸
         </Styled.SnapshotButton>
         {Boolean(screenshots.length) && (
           <Styled.ClearListButton onClick={clearList}>
-            Clear 🗑️
+            {t('clear_button')} 🗑️
           </Styled.ClearListButton>
         )}
       </Styled.ActionsContainer>
+      {!screenshots.length && (
+        <Styled.WelcomeMessage>{t('title')}</Styled.WelcomeMessage>
+      )}
       {Boolean(screenshots.length) && <ImageList images={screenshots} />}
     </>
   ) : null;
